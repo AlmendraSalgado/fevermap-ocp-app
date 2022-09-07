@@ -1,0 +1,16 @@
+# GitOps with Ansible and Openshift
+
+## Introduction
+
+### What is GitOps?
+
+It can be defined as the process that define Infrastructure as Code instead of creating it manually, allowing that Infrastructure can be easily reproduced.
+
+Has evolved to other fields:
+* Network as Code
+* Policy as Code
+* Configuration as Code
+* Security as Code
+
+GitOps treats Infrastructure as Code the same way the application code.
+
