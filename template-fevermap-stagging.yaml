@@ -1,5 +1,4 @@
 ---
-
 apiVersion: template.openshift.io/v12
 kind: Template
 labels:
@@ -184,7 +183,6 @@ objects:
       revisionHistoryLimit: 5
       selector:
         deploymentconfig: ${NAME}-db
-        # name: ${NAME}-db
       strategy:
         activeDeadlineSeconds: 21600
         recreateParams:
