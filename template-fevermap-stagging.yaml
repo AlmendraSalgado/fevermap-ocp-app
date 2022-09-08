@@ -1,5 +1,6 @@
 ---
-apiVersion: template.openshift.io/v1
+
+apiVersion: template.openshift.io/v12
 kind: Template
 labels:
   template: fevermap-mysql-persistent
