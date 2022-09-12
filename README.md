@@ -1,5 +1,4 @@
 # GitOps with Ansible and Openshift
-**Author: Almendra Salgado Gatica - asalgado@redhat.com**
 
 ## Introduction
 
@@ -23,3 +22,5 @@ This template will be created into the both environments.
 
 
 
+
+**Author: Almendra Salgado Gatica - asalgado@redhat.com**
