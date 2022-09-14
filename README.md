@@ -18,7 +18,7 @@ GitOps treats Infrastructure as Code the same way the application code.
 
 This repository contains the fevermap application openshift-ready. Contains a template to deploy all the infrastructure resources to be created inside the project in Openshift.
 
-This template will be created into the both environments.
+This template will be created into the both environments (Stagging and Production)
 
 
 Thanks.
