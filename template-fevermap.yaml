@@ -45,11 +45,6 @@ parameters:
     name: NAMESPACE
     required: true
     value: fevermap
-  - description: The name of the image to deploy the database
-    displayName: DB Image Name
-    name: DB_IMAGE_NAME
-    required: true
-    value: rhel8/mariadb-103
   - description: Version of Python image to be used (3.6 or latest).
     displayName: Python Version
     name: PYTHON_VERSION
@@ -169,6 +164,16 @@ objects:
       resources:
         requests:
           storage: ${VOLUME_CAPACITY}
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    metadata:
+      annotations:
+        openshift.io/display-name: mariadb
+      name: mariadb
+      namespace: fevermap
+    spec:
+      lookupPolicy:
+        local: true
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -274,8 +279,8 @@ objects:
               - mariadb
             from:
               kind: ImageStreamTag
-              name: mariadb:10.2
-              namespace: openshift
+              name: mariadb:latest
+              namespace: fevermap
           type: ImageChange
         - type: ConfigChange
   - apiVersion: v1
