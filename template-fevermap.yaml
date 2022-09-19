@@ -45,6 +45,11 @@ parameters:
     name: NAMESPACE
     required: true
     value: fevermap
+  - description: The name of the image to deploy the database
+    displayName: DB Image Name
+    name: DB_IMAGE_NAME
+    required: true
+    value: rhel8/mariadb-103
   - description: Version of Python image to be used (3.6 or latest).
     displayName: Python Version
     name: PYTHON_VERSION
@@ -217,7 +222,7 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: rhel8/mariadb-103
+              image: ${DB_IMAGE_NAME}
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 failureThreshold: 3
