@@ -173,7 +173,16 @@ objects:
       namespace: fevermap
     spec:
       lookupPolicy:
-        local: true
+        local: false
+      tags:
+      - annotations: null
+        from:
+          kind: DockerImage
+          name: docker.io/balazsszeti/hello:sleeper
+        importPolicy: {}
+        name: latest
+        referencePolicy:
+          type: Source
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -227,8 +236,10 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: fevermap/mariadb@latest
+              image: registry.redhat.io/rhel8/mariadb-103
               imagePullPolicy: IfNotPresent
+              imagePullSecrets:
+                - registry-redhat-io-secret
               livenessProbe:
                 failureThreshold: 3
                 initialDelaySeconds: 30
