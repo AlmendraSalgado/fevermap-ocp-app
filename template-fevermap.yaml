@@ -164,25 +164,25 @@ objects:
       resources:
         requests:
           storage: ${VOLUME_CAPACITY}
-  - apiVersion: image.openshift.io/v1
-    kind: ImageStream
-    metadata:
-      annotations:
-        openshift.io/display-name: mariadb
-      name: mariadb
-      namespace: fevermap
-    spec:
-      lookupPolicy:
-        local: false
-      tags:
-      - annotations: null
-        from:
-          kind: DockerImage
-          name: registry.redhat.io/rhel8/mariadb-103
-        importPolicy: {}
-        name: latest
-        referencePolicy:
-          type: Source
+  # - apiVersion: image.openshift.io/v1
+  #   kind: ImageStream
+  #   metadata:
+  #     annotations:
+  #       openshift.io/display-name: mariadb
+  #     name: mariadb
+  #     namespace: fevermap
+  #   spec:
+  #     lookupPolicy:
+  #       local: false
+  #     tags:
+  #     - annotations: null
+  #       from:
+  #         kind: DockerImage
+  #         name: registry.redhat.io/rhel8/mariadb-103
+  #       importPolicy: {}
+  #       name: latest
+  #       referencePolicy:
+  #         type: Source
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -236,7 +236,7 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: fevermap/mariadb@latest
+              image: 'image-registry.openshift-image-registry.svc:5000/openshift/mariadb@10.3-el8'
               imagePullPolicy: IfNotPresent
               # imagePullSecrets:
               #   - registry-redhat-io-secret
@@ -290,8 +290,8 @@ objects:
               - mariadb
             from:
               kind: ImageStreamTag
-              name: mariadb:latest
-              namespace: fevermap
+              name: 'mariadb:10.3-el8'
+              namespace: openshift
           type: ImageChange
         - type: ConfigChange
   - apiVersion: v1
