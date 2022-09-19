@@ -236,7 +236,7 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: fevermap/mariadb-103
+              image: fevermap/mariadb@latest
               imagePullPolicy: IfNotPresent
               # imagePullSecrets:
               #   - registry-redhat-io-secret
