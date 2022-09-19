@@ -227,7 +227,7 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: ${DB_IMAGE_NAME}
+              image: fevermap/mariadb@latest
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 failureThreshold: 3
