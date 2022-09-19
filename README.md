@@ -20,7 +20,4 @@ This repository contains the fevermap application openshift-ready. Contains a te
 
 This template will be created into the both environments (Stagging and Production)
 
-
-Thanks.
-
 **Author: Almendra Salgado Gatica - asalgado@redhat.com**
