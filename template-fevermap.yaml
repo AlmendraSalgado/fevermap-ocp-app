@@ -1,6 +1,5 @@
 ---
-
-apiVersion: template.openshift.io/v12
+apiVersion: template.openshift.io/v1
 kind: Template
 labels:
   template: fevermap-mysql-persistent
@@ -165,6 +164,25 @@ objects:
       resources:
         requests:
           storage: ${VOLUME_CAPACITY}
+  # - apiVersion: image.openshift.io/v1
+  #   kind: ImageStream
+  #   metadata:
+  #     annotations:
+  #       openshift.io/display-name: mariadb
+  #     name: mariadb
+  #     namespace: fevermap
+  #   spec:
+  #     lookupPolicy:
+  #       local: false
+  #     tags:
+  #     - annotations: null
+  #       from:
+  #         kind: DockerImage
+  #         name: registry.redhat.io/rhel8/mariadb-103
+  #       importPolicy: {}
+  #       name: latest
+  #       referencePolicy:
+  #         type: Source
   - apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     metadata:
@@ -184,7 +202,6 @@ objects:
       revisionHistoryLimit: 5
       selector:
         deploymentconfig: ${NAME}-db
-        # name: ${NAME}-db
       strategy:
         activeDeadlineSeconds: 21600
         recreateParams:
@@ -219,8 +236,10 @@ objects:
                     secretKeyRef:
                       key: database-name
                       name: ${NAME}-db
-              image: openshift/mariadb@latest
+              image: 'image-registry.openshift-image-registry.svc:5000/openshift/mariadb@10.3-el8'
               imagePullPolicy: IfNotPresent
+              # imagePullSecrets:
+              #   - registry-redhat-io-secret
               livenessProbe:
                 failureThreshold: 3
                 initialDelaySeconds: 30
@@ -271,7 +290,7 @@ objects:
               - mariadb
             from:
               kind: ImageStreamTag
-              name: mariadb:10.2
+              name: 'mariadb:10.3-el8'
               namespace: openshift
           type: ImageChange
         - type: ConfigChange
