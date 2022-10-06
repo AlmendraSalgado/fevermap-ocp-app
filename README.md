@@ -23,5 +23,3 @@ This template will be created into the both environments (Stagging and Productio
 In the future, this repository will contain a variables file to use the template.
 
 **Author: Almendra Salgado Gatica - asalgado@redhat.com**
-
-demo prep
